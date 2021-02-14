@@ -4,8 +4,8 @@ const ejs = require("ejs");
 const mongoose = require("mongoose");
 const app = express();
 const env = require("dotenv")
-const accountSid = "ACb82cf0bb4bbb7915d9a7d61718f7c93d";
-const authToken = "00dac0911bc2e5cad93fa5b970b611f7";
+const accountSid = process.env.accountSid;
+const authToken = process.env.authToken;
 const client = require("twilio")(accountSid, authToken);
 app.set("view engine", "ejs");
 app.use(bodyparser.urlencoded({ extended: true }));
