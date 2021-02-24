@@ -5,6 +5,7 @@ import {Subscribe} from "unstated";
 import Login from "../Login/Login";
 // import Main from "../Main/Main";
 import SignUp from "../SignUp/SignUp";
+import Insert from "../Insert/Insert";
 // import 
 // import Topic from "../Topic/Topic";
 // import TopicContent from "../TopicContent/TopicContent";
@@ -20,6 +21,15 @@ export default function Layout() {
             component={() => (
               <Subscribe to={[Data]}>
                 {(data) => <SignUp check={data} />}
+              </Subscribe>
+            )}
+          ></Route>
+
+      <Route
+            path="/insert"
+            component={() => (
+              <Subscribe to={[Data]}>
+                {(data) => <Insert check={data} />}
               </Subscribe>
             )}
           ></Route>
