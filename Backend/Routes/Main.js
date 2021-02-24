@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Data = require("../Model/Data");
+const Data = require("../Model/Dataa");
 
 router.get("/", function (req, res) {
   var date;
@@ -18,7 +18,6 @@ router.get("/", function (req, res) {
   console.log(date);
   Data.find({ date: date }, function (err, result) {
     console.log(result);
-    // res.json(result)
     res.send(result);
   });
 });
