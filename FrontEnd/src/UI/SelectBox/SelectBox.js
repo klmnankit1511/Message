@@ -2,7 +2,7 @@ import React from "react"
 import Styles from "./SelectBox.module.css"
 export default function SelectBox(props){
     return(
-        <select className={Styles.select} name={props.type} id={props.id}>
+        <select className={Styles.select} name={props.type} id={props.id} style={{width:`${props.width}`}}>
             <option value="">SELECT</option>
         <option value="Marriage Anniversary">Marriage Anniversary</option>
         <option value="Birthday">Birthday</option>
