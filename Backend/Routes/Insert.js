@@ -25,6 +25,7 @@ router.post("/", async (req, res) => {
 
   // Replacing Year from date
   date = date.replace(y + "-", "")
+  console.log(date);
   // Assign Varible
   var k = "0"; // Check Whether data of save day exit or not variable
   var count = 1; 
@@ -78,6 +79,8 @@ router.post("/", async (req, res) => {
       }
     }
   );
+  res.send(Update)
+
 });
 
 module.exports = router;

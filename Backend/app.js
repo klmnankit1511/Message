@@ -20,8 +20,8 @@ app.use(express.json());
 app.use(cors());
 
 
-app.use("/api/insert",InsertRoute);
-app.use("/main",MainRoute);
+app.use("/api/insert/",InsertRoute);
+app.use("/api/main",MainRoute);
 app.use("/api/user",authRoute);
 
 
