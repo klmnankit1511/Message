@@ -103,20 +103,33 @@ var checkData = (name,email,pass,phone,tphn,tid,tsec)=>{
 var arr = ["Select","Marriage Anniversary","BirthDay","Anniversary"]
 
     return (
-    <div className="container-fluid">
+    <div className="container-fluid" style={{height:"100vh",background:""}}>
       <div className="row">
-        <div className={`col-lg-12 ${Styles.back}`}>
-          <div className={Styles.circle1}></div>
+        {/* <div className={`col-lg-12 ${Styles.back}`}>
+        {/* <div className={Styles.star}><p>&#9733;</p></div>
+        <div className={Styles.star}><p>&#9733;</p></div> */}
+          {/* <div className={Styles.circle1}></div>
           <div className={Styles.circle2}></div>
-        </div>
-        <div className="col-lg-4"></div>
-        <div className="col-lg-4">
+        </div> */}
+        <div className="col-lg-1"></div>
+        <div className={`col-lg-4 ${Styles.card}`}>
           <div className={Styles.box}>
             <br></br>
             <br></br>
             <h2 className={Styles.name}>INSERT EVENT</h2>
             <br></br>
             <form>
+              
+              <TextBox
+              type="text"
+                auto="name"
+                name="name"
+                id="name"
+                width="100%"
+                placeholder="Enter Wisher Name"
+                
+              />
+              
               <TextBox
                 type="date"
                 auto="date"
@@ -125,20 +138,17 @@ var arr = ["Select","Marriage Anniversary","BirthDay","Anniversary"]
                 autofocus="true"
                 width="100%"
                 placeholder="Select Date"
+                // style={{display:"inline-block"}}
+
               />
-              <TextBox
-              type="text"
-                auto="name"
-                name="name"
-                id="name"
-                width="100%"
-                placeholder="Enter Wisher Name"
-              />
-              <br></br>
               <SelectBox
               name="type"
               id="type"
+              // style={{display:"inline-block"}}
+              width="100%"
               />
+              
+              <br></br>
                 <Subscribe to={[Data]}>
                       {(data) => (
                         <button
@@ -157,11 +167,15 @@ var arr = ["Select","Marriage Anniversary","BirthDay","Anniversary"]
 
               <br></br>
               <br></br>
-              <p className={Styles.txtlogin}>
+              {/* <p className={Styles.txtlogin}>
                 <NavLink to="/Login">Already User ? Login</NavLink>
-              </p>
+              </p> */}
             </form>
           </div>
+        </div>
+        <div className="col-lg-1"></div>
+        <div className={`col-lg-6 ${Styles.content}`}>
+          <h1>WE SAVE YOUR PRECIOUS DAY AT NOTIFIED YOU WHICH MAKES YOU ABLE TO WISH YOUR PRECIOUS ONE ON TIME AND MAKE THEM HAPPY</h1>
         </div>
       </div>
     </div>
