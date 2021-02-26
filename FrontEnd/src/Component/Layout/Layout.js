@@ -6,6 +6,7 @@ import Login from "../Login/Login";
 // import Main from "../Main/Main";
 import SignUp from "../SignUp/SignUp";
 import Insert from "../Insert/Insert";
+import Main from "../Main/Main";
 // import 
 // import Topic from "../Topic/Topic";
 // import TopicContent from "../TopicContent/TopicContent";
@@ -13,7 +14,14 @@ import Insert from "../Insert/Insert";
 export default function Layout() {
   return (
     <BrowserRouter>
-      <Route path="/login" exact component={Login}></Route>
+      <Route
+            path="/login"
+            component={() => (
+              <Subscribe to={[Data]}>
+                {(data) => <Login check={data} />}
+              </Subscribe>
+            )}
+          ></Route>
       {/* <Route path="/signup" exact component={SignUp}></Route> */}
       
       <Route
@@ -33,6 +41,15 @@ export default function Layout() {
               </Subscribe>
             )}
           ></Route>
+      <Route
+            path="/"
+            component={() => (
+              <Subscribe to={[Data]}>
+                {(data) => <Main check={data} />}
+              </Subscribe>
+            )}
+          ></Route>    
+          
 
 
       {/* <Route path="/Topic" exact component={Topic}></Route>

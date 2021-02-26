@@ -3,8 +3,9 @@ import Styles from "./Login.module.css";
 import TextBox from "../../UI/TextBox/TextBox";
 
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
-export default function Login() {
+export default function Login(props) {
   const [e, setEmail] = useState(null); // for email validata or not check
   const [p, setPhone] = useState(null); // for number validate or not check
 
@@ -13,8 +14,17 @@ export default function Login() {
   var check = () => {
     var email = document.getElementById("email").value;
     checkemail(email);
-    var phone = document.getElementById("phone").value;
+    var pass = document.getElementById("password").value;
     checkphone(phone);
+    if(e==null && p==null){
+      var postData = {
+        email:email,
+        pass:pass
+      }
+      axios.post(props.check.state.apiUrl+"/api/insert/login",postData).then((res)=>{
+        console.log(res);
+      })
+    }
   };
 
   var checkemail = (data) => {

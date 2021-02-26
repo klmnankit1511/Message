@@ -1,5 +1,5 @@
 import React,{useState} from "react"
-import {NavLink} from "react-router-dom";
+import {NavLink,withRouter,Link} from "react-router-dom";
 import Styles from "./SignUp.module.css"
 import TextBox from "../../UI/TextBox/TextBox"
 import axios from "axios";
@@ -10,7 +10,6 @@ import Data from "../../Container/Data";
 
 
 export default function SignUp(props){
-    // console.log(props);
     const [nm,setName] = useState(null); 
     const [e,setEmail] = useState(null); // for email validata or not check
     const [p,setPass] = useState(null); // for number validate or not check
@@ -21,7 +20,6 @@ export default function SignUp(props){
     
 var k;
 var check = async (doLogin)=>{
-    // console.log(doLogin);
     var name = document.getElementById("name").value;
     var email = document.getElementById("email").value;
     var pass = document.getElementById("password").value;
@@ -30,7 +28,6 @@ var check = async (doLogin)=>{
     var tid = document.getElementById("tid").value;
     var tsec = document.getElementById("tsec").value;
     k = await checkData(name,email,pass,phone,tphn,tid,tsec);
-    // console.log(k);
     if(k){
         var postData={
             name:name,
@@ -41,14 +38,16 @@ var check = async (doLogin)=>{
             tid:tid,
             tsec:tsec
         }
-        // console.log(postData);
-        axios.post(props.check.state.apiUrl+'api/user/resister',postData).then((res)=>{
-            if(res.status==200){
-                doLogin(res.data.data)
+        await axios.post(props.check.state.apiUrl+'api/user/resister',postData).then((res)=>{
+          console.log(res.data.data);
+            if(res.status===200){
+              console.log(res);
+                doLogin(res.data.data);
+                console.log(doLogin);
+
+
             }
-            // console.log(res);
         })
-        // console.log(props);
     }
 
 
@@ -203,15 +202,12 @@ var checkData = (name,email,pass,phone,tphn,tid,tsec)=>{
                           }
                           type={k? "submit" : "button"}
                           className={Styles.btnlogin}
+                          
                         >
-                          SIGNUP
+                          SignUp
                         </button>
                       )}
                     </Subscribe>
-
-
-
-
               <br></br>
               {/* Error Display */}
               <p style={{ color: "white", fontSize: "15px" ,marginLeft:"70px"}}>
