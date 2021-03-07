@@ -1,11 +1,11 @@
 for Run
-// For Front End
-// In your respective terminal or cmd
-cd FrontEnd
-// Install All packages
-npm install 
-// for start front end after Packages Install 
-npm start
+// For Front End.
+// In your respective terminal or cmd.
+cd FrontEnd.
+// Install All packages.
+npm install .
+// for start front end after Packages Install .
+npm start.
 Runs the app in the development mode.
 Open http://localhost:3000 to view it in the browser.
 
