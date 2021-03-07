@@ -1,9 +1,8 @@
 for Run
 // For Front End.
 
-// In your respective terminal or cmd.
 
-cd FrontEnd.
+cd FrontEnd./* In your respective terminal or cmd.*/
 
 // Install All packages.
 
