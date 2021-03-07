@@ -1,12 +1,10 @@
 for Run
+
 // For Front End.
 
+cd FrontEnd // In your respective terminal or cmd.
 
-cd FrontEnd./* In your respective terminal or cmd.*/
-
-// Install All packages.
-
-npm install.
+npm install // Install All packages.
 
 // for start front end after Packages Install .
 
@@ -15,13 +13,14 @@ Runs the app in the development mode.
 Open http://localhost:3000 to view it in the browser.
 
 // For BackEnd
-// In your respective terminal or cmd
-cd Backend
-// Install All packages
-npm install 
-// for start Backend Server after Packages Install 
-nodemon app.js
-Runs the app in the development mode at http://localhost:3006 
+
+cd Backend // In your respective terminal or cmd
+
+npm install // Install All packages
+
+nodemon app.js // for start Backend Server after Packages Install 
+
+Runs the app in the development mode . Server start at http://localhost:3006 
 
 
 
