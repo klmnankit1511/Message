@@ -1,4 +1,7 @@
 ![Screenshot 2021-03-09 at 1 24 17 PM](https://user-images.githubusercontent.com/56124631/110439310-4fce9b00-80dd-11eb-883c-3642bd553cd9.png)
+![Screenshot 2021-03-09 at 1 48 55 PM](https://user-images.githubusercontent.com/56124631/110443545-0af93300-80e2-11eb-8709-495457d1fa8a.png)
+![Screenshot 2021-03-09 at 1 52 31 PM](https://user-images.githubusercontent.com/56124631/110443594-16e4f500-80e2-11eb-863b-7080a5d9d2cf.png)
+![Screenshot_20210309-141536298 (1)](https://user-images.githubusercontent.com/56124631/110443603-1b111280-80e2-11eb-9b78-910bc8fbc34c.jpg)
 
 for Run
 
