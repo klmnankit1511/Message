@@ -40,7 +40,7 @@ export default function Login(props) {
                   setCh2(false)
                   document.getElementById("button").style.cssText = 'color:green'
                   
-                  his.push("/main")
+                  his.push("/insert")
                 }
             }
         })

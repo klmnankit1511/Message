@@ -6,6 +6,7 @@ const app = express();
 const cors = require("cors");
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const Dataa = require("./Model/Data");
 
 dotenv.config();
 
@@ -60,10 +61,10 @@ app.listen("3006",()=>{
 // const cors = require("cors")
 // dotenv.config();
 
-// const accountSid = process.env.accountSid;
-// const authToken = process.env.authToken;
+const accountSid = process.env.accountSid;
+const authToken = process.env.authToken;
 
-// const client = require("twilio")(accountSid, authToken);
+const client = require("twilio")(accountSid, authToken);
 // app.set("view engine", "ejs");
 // app.use(bodyparser.urlencoded({ extended: true }));
 // app.use(cors());
@@ -83,39 +84,85 @@ app.listen("3006",()=>{
 
 // const Data = new mongoose.model("data", DataSchema);
 
-// setInterval(() => {
-//   d = new Date();
-//   if (d.getHours() == 00 && d.getMinutes() == 00 && d.getSeconds() == 00) {
-//     var date;
-//     y = d.getFullYear();
-//     m = d.getMonth() + 1;
-//     da = d.getDate();
+setInterval(() => {
+  d = new Date();
+  if (d.getHours() == 00 && d.getMinutes() == 00 && d.getSeconds() == 00) {
+    var date;
+  y = d.getFullYear();
+  m = d.getMonth() + 1;
+  da = d.getDate();
 
-//     if (m < 10) {
-//       m = "0" + m;
-//     }
-//     if (da < 10) {
-//       da = "0" + da;
-//     }
-//     date = m + "-" + da;
-//     console.log(date);
-//     Data.find({ date: date }, function (err, result) {
-//       console.log(result);
-//       if (result.length != 0) {
-//         for (var i = 0; i < result.length; i++) {
-//           client.messages
-//             .create({
-//               body: result[i].type + " of " + result[i].name,
-//               from: "whatsapp:+14155238886",
-//               to: "whatsapp:+919835745940"
-//             })
-//             .then((message) => console.log(message.sid))
-//             .done();
-//         }
-//       }
-//     });
-//   }
-// }, 1000);
+  if (m < 10) {
+    m = "0" + m;
+  }
+  if (da < 10) {
+    da = "0" + da;
+  }
+  date = m + "-" + da;
+  console.log(date);
+
+Dataa.find({ _id: date}, function (err, result) {
+    console.log(result);
+    if(result.length!=0){
+      var arr=[];
+        for (var i=0;i<result[0].data.length;i+=2){
+            arr.push(result[0].data[i])
+        }
+        for (var i = 0; i < arr.length; i++) {
+          client.messages
+            .create({
+              body: arr[i].type + " of " + arr[i].name,
+              from: "whatsapp:+14155238886",
+              to: "whatsapp:+916206114473"
+            })
+            .then((message) => console.log(message.sid))
+            .done();
+        }
+
+    }
+    
+  });
+
+
+  }
+}, 1000);
+
+var date;
+  d = new Date();
+  y = d.getFullYear();
+  m = d.getMonth() + 1;
+  da = d.getDate();
+
+  if (m < 10) {
+    m = "0" + m;
+  }
+  if (da < 10) {
+    da = "0" + da;
+  }
+  date = m + "-" + da;
+  console.log(date);
+
+Dataa.find({ _id: date}, function (err, result) {
+    console.log(result);
+    if(result.length!=0){
+      var arr=[];
+        for (var i=0;i<result[0].data.length;i+=2){
+            arr.push(result[0].data[i])
+        }
+        for (var i = 0; i < arr.length; i++) {
+          client.messages
+            .create({
+              body: arr[i].type + " of " + arr[i].name,
+              from: "whatsapp:+14155238886",
+              to: "whatsapp:+916206114473"
+            })
+            .then((message) => console.log(message.sid))
+            .done();
+        }
+
+    }
+    
+  });
 
 
 

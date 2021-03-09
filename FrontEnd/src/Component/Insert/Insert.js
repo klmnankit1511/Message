@@ -1,5 +1,5 @@
 import React,{useState} from "react"
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import Styles from "./Insert.module.css"
 import TextBox from "../../UI/TextBox/TextBox"
 import axios from "axios";
@@ -173,6 +173,15 @@ var arr = ["Select","Marriage Anniversary","BirthDay","Anniversary"]
               {/* <p className={Styles.txtlogin}>
                 <NavLink to="/Login">Already User ? Login</NavLink>
               </p> */}
+              
+                        <Link to="/main"> <button
+                        className={Styles.btnlogin}
+                          type="submit"
+                        >
+                        
+                          SEE EVENT
+                        </button></Link>
+                      
             </form>
           </div>
         </div>

@@ -40,6 +40,18 @@
         font-size: 50px;
     
 }
+.btnlogin {
+    color: #e25748;
+    border: 1px solid #e25748;
+    background-color: white;
+    margin-top: 10px;
+    margin-left: 30px;
+    padding: 7px 10px;
+    border-radius: 5px;
+    float: right;
+    outline: none;
+    /* width: 10px; */
+}
 @media only screen and (max-width: 500px) {
     .sec1 h1{
         font-size: 83px;
@@ -49,5 +61,11 @@
     .sec2 h1{
         font-size: 45px;
         margin-top: 130px;
+    }
+    .btnlogin {
+        background-color: white;
+        margin-top: 10px;
+        margin-left: 0px;
+        width: 100%;
     }
 }

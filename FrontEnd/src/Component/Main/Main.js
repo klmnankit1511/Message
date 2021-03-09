@@ -3,7 +3,7 @@ import Styles from "./Main.module.css"
 import axios from "axios"
 import Card from "./Card/Card";
 import Loading from "../../UI/Loading/Loading";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 export default function Main(props){
     const [data,setData] = useState([]);
@@ -55,6 +55,13 @@ export default function Main(props){
                                 type = {da.type}
                             />
                         ))}
+                <Link to="/insert"> <button
+                        className={Styles.btnlogin}
+                          type="submit"
+                        >
+                        
+                          ADD EVENT
+                        </button></Link>        
                         
                 </div>
                 

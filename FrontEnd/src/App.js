@@ -14,12 +14,14 @@ export default function App(){
   // })
   // ));
   return(
+    <React.StrictMode>
+
     <div>
       <Provider>
         <Layout></Layout>
       </Provider>
-        
     </div>
+    </React.StrictMode>
   )
 }
 

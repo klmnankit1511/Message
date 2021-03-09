@@ -14,14 +14,6 @@ import Main from "../Main/Main";
 export default function Layout() {
   return (
     <BrowserRouter>
-      <Route
-            path="/"
-            component={() => (
-              <Subscribe to={[Data]}>
-                {(data) => <Login check={data} />}
-              </Subscribe>
-            )}
-          ></Route>
       {/* <Route path="/signup" exact component={SignUp}></Route> */}
       
       <Route
@@ -50,6 +42,14 @@ export default function Layout() {
             )}
           ></Route>    
           
+      <Route
+            path="/" exact
+            component={() => (
+              <Subscribe to={[Data]}>
+                {(data) => <Login check={data} />}
+              </Subscribe>
+            )}
+          ></Route>
 
 
       {/* <Route path="/Topic" exact component={Topic}></Route>

@@ -26,9 +26,9 @@ router.get("/", function (req, res) {
 router.post("/", function (req, res) {
 
 
-  // token = req.body.token;
-  // var decode = jwt_decode(token)
-  // console.log(decode.email);
+  token = req.body.token;
+  var decode = jwt_decode(token)
+  console.log(decode.email);
   var date;
   d = new Date();
   y = d.getFullYear();
@@ -45,14 +45,18 @@ router.post("/", function (req, res) {
   console.log(date);
 
   Dataa.find({ _id: date}, function (err, result) {
-    // console.log(result[0].data[0]);
-    console.log(result,1);
+    console.log(result[0].data.length,45);
+    // console.log(result);
     if(result.length!=0){
-      // var arr = result[0].data.filter((da)=>{
-      //   return da.email.includes(decode.email);
-      // })
-      // console.log(arr);
-      res.send(result[0].data);
+      console.log(result[0]);
+      var arr = result[0].data.filter((da)=>{
+        return da.email.includes(decode.email);
+      })
+      console.log(arr);
+      res.send(arr);
+    }
+    else if(result.length==0){
+      res.status(300).send("No Event's Today")
     }
     else{
       res.send("No Found")
