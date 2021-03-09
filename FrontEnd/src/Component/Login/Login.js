@@ -2,28 +2,50 @@ import React, { useState } from "react";
 import Styles from "./Login.module.css";
 import TextBox from "../../UI/TextBox/TextBox";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import axios from "axios";
+import { Subscribe } from "unstated";
+import Data from "../../Container/Data";
 
 export default function Login(props) {
   const [e, setEmail] = useState(null); // for email validata or not check
-  const [p, setPhone] = useState(null); // for number validate or not check
+  const [p, setPhone] = useState(null);
+  const [ch,setCh] = useState(true)
+    const [ch2,setCh2] = useState(true)
+    const his = useHistory() // for number validate or not check
 
   
 
-  var check = () => {
+  var check = async (es,doLogin) => {
+    es.preventDefault();
     var email = document.getElementById("email").value;
     checkemail(email);
     var pass = document.getElementById("password").value;
-    checkphone(phone);
     if(e==null && p==null){
-      var postData = {
-        email:email,
-        pass:pass
-      }
-      axios.post(props.check.state.apiUrl+"/api/insert/login",postData).then((res)=>{
-        console.log(res);
-      })
+
+     setCh(false)
+        if(ch==false){
+      document.getElementById("button").style.cssText = 'color:yellow'
+    }
+        var postData={
+            email:email,
+            password:pass,
+        }
+         axios.post(props.check.state.apiUrl+'api/user/login',postData).then((res)=>{
+          // console.log(res.data);
+            if(res.status===200){
+              // console.log(res,doLogin);
+                var m = doLogin(res.data);
+                if(m){
+                  setCh2(false)
+                  document.getElementById("button").style.cssText = 'color:green'
+                  
+                  his.push("/main")
+                }
+            }
+        })
+
+
     }
   };
 
@@ -39,14 +61,7 @@ export default function Login(props) {
     }
   };
 
-  var checkphone = (data) => {
-    var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-    if (data.match(phoneno)) {
-      setPhone(null);
-    } else {
-      setPhone("Invaild Phone No.");
-    }
-  };
+  
 
   return (
     <div className="container-fluid">
@@ -68,7 +83,7 @@ export default function Login(props) {
                 auto="email"
                 name="email"
                 id="email"
-                autofocus="false"
+                autofocus={true}
                 width="100%"
                 placeholder="Email"
               />
@@ -80,13 +95,32 @@ export default function Login(props) {
                 width="100%"
                 placeholder="Password"
               />
-              <button
+              <Subscribe to={[Data]}>
+                      {(data) => (
+                        
+                        <button
+                        id="button"
+                        onClick={(e) =>{
+                            console.log(data)
+                            check(e,data.doLogin)
+                        }
+                          }
+                          type={p == null && e == null ? "submit" : "button"}
+                          className={Styles.btnlogin}
+                          
+                        >
+                          {ch?"SignUp":ch2?"Please Wait...":"Success"}
+                        </button>
+                      )}
+                    </Subscribe>
+
+              {/* <button
                 onClick={check}
-                type={p == null && e == null ? "submit" : "button"}
+                
                 className={Styles.btnlogin}
               >
                 LOGIN
-              </button>
+              </button> */}
               <br></br>
               <p style={{ color: "red", fontSize: "15px" }}>
                 {" "}

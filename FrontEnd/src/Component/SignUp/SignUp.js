@@ -1,5 +1,5 @@
 import React,{useState} from "react"
-import {NavLink,withRouter,Link} from "react-router-dom";
+import {NavLink,withRouter,Link,useHistory} from "react-router-dom";
 import Styles from "./SignUp.module.css"
 import TextBox from "../../UI/TextBox/TextBox"
 import axios from "axios";
@@ -17,9 +17,13 @@ export default function SignUp(props){
     const [tphn,setTPhn] = useState(null);
     const [tid,setTID] = useState(null);
     const [tsec,setTSec] = useState(null); 
+    const [ch,setCh] = useState(true)
+    const [ch2,setCh2] = useState(true)
+    const his = useHistory();
     
 var k;
 var check = async (doLogin)=>{
+  
     var name = document.getElementById("name").value;
     var email = document.getElementById("email").value;
     var pass = document.getElementById("password").value;
@@ -27,8 +31,13 @@ var check = async (doLogin)=>{
     var tphn = document.getElementById("tphn").value;
     var tid = document.getElementById("tid").value;
     var tsec = document.getElementById("tsec").value;
+    
     k = await checkData(name,email,pass,phone,tphn,tid,tsec);
     if(k){
+        setCh(false)
+        if(ch==false){
+      document.getElementById("button").style.cssText = 'color:yellow'
+    }
         var postData={
             name:name,
             email:email,
@@ -39,11 +48,15 @@ var check = async (doLogin)=>{
             tsec:tsec
         }
         await axios.post(props.check.state.apiUrl+'api/user/resister',postData).then((res)=>{
-          console.log(res.data.data);
+          console.log(res);
             if(res.status===200){
-              console.log(res);
+              // console.log(res,doLogin);
                 doLogin(res.data.data);
-                console.log(doLogin);
+                setCh2(false)
+                document.getElementById("button").style.cssText = 'color:green'
+                his.push("/insert")
+
+                //console.log(doLogin);
 
 
             }
@@ -141,7 +154,7 @@ var checkData = (name,email,pass,phone,tphn,tid,tsec)=>{
                 auto="name"
                 name="name"
                 id="name"
-                autofocus="true"
+                autofocus={true}
                 width="100%"
                 placeholder="Enter Name"
               />
@@ -179,7 +192,7 @@ var checkData = (name,email,pass,phone,tphn,tid,tsec)=>{
                 placeholder="Twillo Phone No."
               />
               <TextBox
-                type="text"
+                type="password"
                 auto="tid"
                 name="tid"
                 id="tid"
@@ -196,15 +209,19 @@ var checkData = (name,email,pass,phone,tphn,tid,tsec)=>{
               />
                 <Subscribe to={[Data]}>
                       {(data) => (
+                        
                         <button
-                        onClick={() =>
+                        id="button"
+                        onClick={() =>{
+                            console.log(data)
                             check(data.doLogin)
+                        }
                           }
                           type={k? "submit" : "button"}
                           className={Styles.btnlogin}
                           
                         >
-                          SignUp
+                          {ch?"SignUp":ch2?"Please Wait...":"Success"}
                         </button>
                       )}
                     </Subscribe>

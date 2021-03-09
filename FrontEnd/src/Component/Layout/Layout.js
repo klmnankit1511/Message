@@ -15,7 +15,7 @@ export default function Layout() {
   return (
     <BrowserRouter>
       <Route
-            path="/login"
+            path="/"
             component={() => (
               <Subscribe to={[Data]}>
                 {(data) => <Login check={data} />}
@@ -42,7 +42,7 @@ export default function Layout() {
             )}
           ></Route>
       <Route
-            path="/"
+            path="/main" exact
             component={() => (
               <Subscribe to={[Data]}>
                 {(data) => <Main check={data} />}

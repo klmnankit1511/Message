@@ -14,8 +14,9 @@ export default function Insert(props){
     // console.log(props);
     
 var k;
-var check = async (doLogin)=>{
+var check = async (e, doLogin)=>{
     // console.log(k);
+    e.preventDefault();
     var date = document.getElementById("date").value;
     var name = document.getElementById("name").value;
     var type = document.getElementById("type").value;
@@ -152,11 +153,13 @@ var arr = ["Select","Marriage Anniversary","BirthDay","Anniversary"]
                 <Subscribe to={[Data]}>
                       {(data) => (
                         <button
-                        onClick={() =>
-                            check(data.doLogin)
+                        onClick={(e) =>
+                            check(e, data.doLogin)
                           }
                           className={Styles.btnlogin}
+                          type="submit"
                         >
+                        
                           ADD EVENT
                         </button>
                       )}

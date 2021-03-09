@@ -24,3 +24,8 @@
     /* border: 1px solid white; */
     
 }
+@media only screen and (max-width: 500px) {
+    .card{
+        margin-left: 11px;
+    }
+}
