@@ -61,10 +61,7 @@ app.listen("3006",()=>{
 // const cors = require("cors")
 // dotenv.config();
 
-const accountSid = process.env.accountSid;
-const authToken = process.env.authToken;
 
-const client = require("twilio")(accountSid, authToken);
 // app.set("view engine", "ejs");
 // app.use(bodyparser.urlencoded({ extended: true }));
 // app.use(cors());
@@ -108,7 +105,12 @@ Dataa.find({ _id: date}, function (err, result) {
         for (var i=0;i<result[0].data.length;i+=2){
             arr.push(result[0].data[i])
         }
+        
         for (var i = 0; i < arr.length; i++) {
+          const accountSid = arr[i].tid;
+const authToken = arr[i].tsec;
+
+const client = require("twilio")(accountSid, authToken);
           client.messages
             .create({
               body: arr[i].type + " of " + arr[i].name,
@@ -127,42 +129,7 @@ Dataa.find({ _id: date}, function (err, result) {
   }
 }, 1000);
 
-var date;
-  d = new Date();
-  y = d.getFullYear();
-  m = d.getMonth() + 1;
-  da = d.getDate();
 
-  if (m < 10) {
-    m = "0" + m;
-  }
-  if (da < 10) {
-    da = "0" + da;
-  }
-  date = m + "-" + da;
-  console.log(date);
-
-Dataa.find({ _id: date}, function (err, result) {
-    console.log(result);
-    if(result.length!=0){
-      var arr=[];
-        for (var i=0;i<result[0].data.length;i+=2){
-            arr.push(result[0].data[i])
-        }
-        for (var i = 0; i < arr.length; i++) {
-          client.messages
-            .create({
-              body: arr[i].type + " of " + arr[i].name,
-              from: "whatsapp:+14155238886",
-              to: "whatsapp:+916206114473"
-            })
-            .then((message) => console.log(message.sid))
-            .done();
-        }
-
-    }
-    
-  });
 
 
 
